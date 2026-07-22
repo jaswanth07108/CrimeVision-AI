@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrimeVision AI Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+
+}
+
+.login-box{
+
+width:380px;
+background:rgba(255,255,255,.1);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:20px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+}
+
+h1{
+
+text-align:center;
+margin-bottom:30px;
+
+}
+
+input{
+
+width:100%;
+padding:14px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+font-size:16px;
+
+}
+
+button{
+
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:17px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+.options{
+
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h1>CrimeVision AI</h1>
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<div class="options">
+
+<label>
+
+<input type="checkbox">
+
+Remember Me
+
+</label>
+
+<span
+style="cursor:pointer"
+onclick="togglePassword()">
+
+👁 Show
+
+</span>
+
+</div>
+
+<button onclick="login()">
+
+Login
+
+</button>
+
+<p
+id="message"
+style="margin-top:20px;text-align:center;color:#ffb4b4;">
+</p>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let pass=document.getElementById("password");
+
+if(pass.type==="password")
+pass.type="text";
+else
+pass.type="password";
+
+}
+
+function login(){
+
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+
+if(user==="admin" && pass==="admin123"){
+
+window.location.href="index.html";
+
+}else{
+
+document.getElementById("message").innerHTML=
+"Invalid Username or Password";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

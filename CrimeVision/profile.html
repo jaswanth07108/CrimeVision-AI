@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CrimeVision AI - Profile</title>
+
+<link rel="stylesheet" href="index.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+CrimeAI
+</h2>
+
+<ul>
+
+<li onclick="location.href='index.html'">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</li>
+
+<li onclick="location.href='analytics.html'">
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</li>
+
+<li onclick="location.href='reports.html'">
+<i class="fa-solid fa-file-lines"></i>
+Reports
+</li>
+
+<li class="active">
+<i class="fa-solid fa-user"></i>
+Profile
+</li>
+
+<li onclick="location.href='settings.html'">
+<i class="fa-solid fa-gear"></i>
+Settings
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<header>
+
+<h1>Administrator Profile</h1>
+
+<div class="profile">
+
+<i class="fa-solid fa-user-circle"></i>
+
+Admin
+
+</div>
+
+</header>
+
+<!-- Profile Card -->
+
+<div class="prediction">
+
+<div style="text-align:center;">
+
+<i class="fa-solid fa-circle-user"
+style="font-size:120px;color:#2563eb;"></i>
+
+<h2 style="margin-top:20px;">
+Administrator
+</h2>
+
+<p style="color:gray;">
+CrimeVision AI System
+</p>
+
+</div>
+
+<hr style="margin:30px 0;">
+
+<div class="analytics-cards">
+
+<div>
+
+<h3>Full Name</h3>
+
+<p>Admin User</p>
+
+</div>
+
+<div>
+
+<h3>Email</h3>
+
+<p>admin@crimevision.com</p>
+
+</div>
+
+<div>
+
+<h3>Role</h3>
+
+<p>System Administrator</p>
+
+</div>
+
+<div>
+
+<h3>Department</h3>
+
+<p>Crime Investigation</p>
+
+</div>
+
+<div>
+
+<h3>Last Login</h3>
+
+<p id="lastLogin"></p>
+
+</div>
+
+<div>
+
+<h3>Status</h3>
+
+<p style="color:green;font-weight:bold;">
+● Online
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<h2>Account Statistics</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<div>
+
+<h3>Cases Managed</h3>
+
+<p>1240</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-check-circle"></i>
+
+<div>
+
+<h3>Cases Solved</h3>
+
+<p>890</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<div>
+
+<h3>Prediction Accuracy</h3>
+
+<p>94%</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-clock"></i>
+
+<div>
+
+<h3>Experience</h3>
+
+<p>5 Years</p>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div style="text-align:center;">
+
+<button
+onclick="enableEdit()"
+style="padding:12px 30px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin-right:15px;">
+
+<i class="fa-solid fa-user-pen"></i>
+
+Edit Profile
+
+</button>
+
+<button
+onclick="logout()"
+style="padding:12px 30px;
+background:#dc2626;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("lastLogin").innerHTML =
+new Date().toLocaleString();
+
+function editProfile(){
+
+alert("Edit Profile Feature Coming Soon");
+
+}
+
+function logout(){
+
+if(confirm("Are you sure you want to logout?")){
+
+window.location.href="login.html";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
+function enableEdit(){
+
+    document.getElementById("name").disabled = false;
+    document.getElementById("email").disabled = false;
+    document.getElementById("phone").disabled = false;
+    document.getElementById("designation").disabled = false;
+
+}
+
+function saveProfile(){
+
+    localStorage.setItem("name", document.getElementById("name").value);
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("phone", document.getElementById("phone").value);
+    localStorage.setItem("designation", document.getElementById("designation").value);
+
+    alert("Profile Updated Successfully!");
+
+    document.getElementById("name").disabled = true;
+    document.getElementById("email").disabled = true;
+    document.getElementById("phone").disabled = true;
+    document.getElementById("designation").disabled = true;
+}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrimeVision AI - Analytics</title>
+
+<link rel="stylesheet" href="index.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+CrimeAI
+</h2>
+
+<ul>
+
+<li onclick="location.href='index.html'">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</li>
+
+<li class="active">
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</li>
+
+<li onclick="location.href='reports.html'">
+<i class="fa-solid fa-file-lines"></i>
+Reports
+</li>
+
+<li onclick="location.href='profile.html'">
+<i class="fa-solid fa-user"></i>
+Profile
+</li>
+
+<li onclick="location.href='settings.html'">
+<i class="fa-solid fa-gear"></i>
+Settings
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<header>
+
+<h1>Crime Analytics</h1>
+
+<div class="profile">
+
+<i class="fa-solid fa-user-circle"></i>
+
+Admin
+
+</div>
+
+</header>
+
+<!-- Statistics -->
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<div>
+
+<h3>Total Crimes</h3>
+
+<p id="totalCrime">0</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<div>
+
+<h3>Highest Risk Area</h3>
+
+<p id="highestRiskArea">Loading...</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-arrow-trend-up"></i>
+
+<div>
+
+<h3>Crime Growth</h3>
+
+<p id="crimeGrowth">0%</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+<div>
+
+<h3>Most Common Crime</h3>
+
+<p id="mostCommonCrime">Loading...</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Charts -->
+
+<div class="charts">
+
+<div class="chart-box">
+
+<h2>Monthly Crime Trend</h2>
+
+<canvas id="crimeChart"></canvas>
+
+</div>
+
+<div class="chart-box">
+
+<h2>Crime Categories</h2>
+
+<canvas id="crimeTypeChart"></canvas>
+
+</div>
+
+</div>
+
+<!-- Insights -->
+
+<div class="analytics">
+
+<h2>AI Insights</h2>
+
+<div class="analytics-cards">
+
+<div>
+
+<h3>Prediction Accuracy</h3>
+
+<p>94%</p>
+
+</div>
+
+<div>
+
+<h3>Safest City</h3>
+
+<p>Chennai</p>
+
+</div>
+
+<div>
+
+<h3>Highest Crime Month</h3>
+
+<p>July</p>
+
+</div>
+
+<div>
+
+<h3>Lowest Crime Month</h3>
+
+<p>February</p>
+
+</div>
+
+<div>
+
+<h3>Average Daily Crimes</h3>
+
+<p>42</p>
+
+</div>
+
+<div>
+
+<h3>Risk Level</h3>
+
+<p style="color:red;">Medium</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const BASE_URL = "http://127.0.0.1:5000/api";
+
+// Dashboard Summary
+
+fetch(`${BASE_URL}/dashboard-summary`)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById("totalCrime").innerHTML=data.metrics.totalCrimes;
+
+document.getElementById("highestRiskArea").innerHTML=data.analytics.highestRiskArea;
+
+document.getElementById("crimeGrowth").innerHTML=data.analytics.crimeGrowth;
+
+document.getElementById("mostCommonCrime").innerHTML=data.analytics.mostCommonCrime;
+
+});
+
+// Charts
+
+fetch(`${BASE_URL}/chart-trends`)
+
+.then(res=>res.json())
+
+.then(data=>{
+
+new Chart(
+
+document.getElementById("crimeChart"),
+
+{
+
+type:"line",
+
+data:{
+
+labels:data.trends.labels,
+
+datasets:[{
+
+label:"Crimes",
+
+data:data.trends.data,
+
+borderWidth:3,
+
+fill:true,
+
+tension:.4
+
+}]
+
+},
+
+options:{
+
+responsive:true
+
+}
+
+}
+
+);
+
+new Chart(
+
+document.getElementById("crimeTypeChart"),
+
+{
+
+type:"doughnut",
+
+data:{
+
+labels:data.categories.labels,
+
+datasets:[{
+
+data:data.categories.data
+
+}]
+
+},
+
+options:{
+
+responsive:true
+
+}
+
+}
+
+);
+
+});
+
+</script>
+
+</body>
+</html>
