@@ -1,4 +1,4 @@
-const BASE_URL = "https://crimevision-api.onrender.com/api";
+const BASE_URL = "https://crimevision-ai-nik1.onrender.com/api";
 let editingId = null;
 
 
