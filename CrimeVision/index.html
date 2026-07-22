@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CrimeAI Dashboard</title>
+
+
+<!-- CSS FILE -->
+<link rel="stylesheet" href="index.css">
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<!-- Leaflet Map CSS -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">
+<i class="fa-solid fa-shield-halved"></i>
+CrimeAI
+</div>
+
+
+<ul>
+
+<li class="active">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</li>
+
+
+<li>
+<i class="fa-solid fa-map-location-dot"></i>
+Crime Heatmap
+</li>
+
+
+<li>
+<i class="fa-solid fa-robot"></i>
+AI Prediction
+</li>
+
+
+<li>
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</li>
+
+
+<li>
+<i class="fa-solid fa-file-lines"></i>
+Reports
+</li>
+
+
+<li>
+<i class="fa-solid fa-gear"></i>
+Settings
+</li>
+
+
+</ul>
+
+
+
+<div class="user-box" onclick="toggleProfileMenu()">
+
+    <i class="fa-solid fa-user-circle"></i>
+
+    <div>
+        <h4>Admin</h4>
+        <p>Crime Officer</p>
+    </div>
+
+</div>
+
+<!-- Profile Menu -->
+<div class="profile-menu" id="profileMenu">
+
+    <div class="profile-header">
+        <i class="fa-solid fa-user-circle"></i>
+
+        <div>
+            <h4>Admin</h4>
+            <p>Crime Officer</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <a href="profile.html">
+        <i class="fa-solid fa-user"></i>
+        My Profile
+    </a>
+
+    <a href="#" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+
+<header>
+
+<div>
+
+<h1>
+AI Crime Intelligence Platform
+</h1>
+
+<p>
+Real-time crime monitoring and prediction
+</p>
+
+</div>
+
+
+<div class="profile">
+
+<i class="fa-solid fa-bell"></i>
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<!-- DASHBOARD CARDS -->
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="icon">
+<i class="fa-solid fa-database"></i>
+</div>
+
+<div>
+
+<h3>Total Crimes</h3>
+
+<h2 id="totalCrime">0</h2>
+
+<span>Overall Records</span>
+
+</div>
+
+</div>
+
+
+
+
+<div class="card">
+
+<div class="icon">
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+
+<div>
+
+<h3>Active Cases</h3>
+
+<h2 id="activeCases">0</h2>
+
+<span>Under Investigation</span>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+
+<div>
+
+<h3>Solved Cases</h3>
+
+<h2 id="solvedCases">0</h2>
+
+<span>Completed</span>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="icon">
+<i class="fa-solid fa-arrow-trend-up"></i>
+</div>
+
+<div>
+
+<h3>Crime Rate</h3>
+
+<h2 id="crimeRate">0</h2>
+
+<span>Monthly Growth</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- AI PREDICTION -->
+
+<div class="prediction">
+
+
+<h2>
+<i class="fa-solid fa-brain"></i>
+AI Crime Risk Prediction
+</h2>
+
+
+
+<div class="prediction-form">
+
+
+<div>
+
+<label>Location</label>
+
+<input id="location"
+placeholder="Enter location">
+
+</div>
+
+
+
+<div>
+
+<label>Crime Type</label>
+
+
+<select id="crimeType">
+
+<option value="">
+Select Type
+</option>
+
+<option>Theft</option>
+
+<option>Cyber Crime</option>
+
+<option>Fraud</option>
+
+<option>Assault</option>
+
+</select>
+
+
+</div>
+
+
+
+<button onclick="predictCrime()">
+Analyze Risk
+</button>
+
+
+</div>
+
+
+
+<div id="result">
+AI prediction result will appear here
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- CHARTS -->
+
+<div class="charts">
+
+
+<div class="chart-box">
+
+<h2>
+Crime Trend Analysis
+</h2>
+
+<canvas id="crimeChart"></canvas>
+
+
+</div>
+
+
+
+
+
+<div class="chart-box">
+
+<h2>
+Crime Categories
+</h2>
+
+<canvas id="crimeTypeChart"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- MAP -->
+
+
+<div class="map-section">
+
+
+<h2>
+<i class="fa-solid fa-location-dot"></i>
+Crime Hotspot Map
+</h2>
+
+
+<div id="map"></div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ANALYTICS -->
+
+
+<div class="analytics">
+
+
+<h2>
+AI Insights
+</h2>
+
+
+<div class="analytics-cards">
+
+
+<div>
+
+<h3>
+Most Common Crime
+</h3>
+
+<p id="mostCommonCrime">
+Loading...
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h3>
+Highest Risk Area
+</h3>
+
+<p id="highestRiskArea">
+Loading...
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h3>
+Crime Growth
+</h3>
+
+<p id="crimeGrowth">
+Loading...
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+<div class="prediction">
+
+<h2>Add New Crime</h2>
+
+<label>Crime Type</label>
+
+<input type="text" id="newCrimeType" placeholder="Enter Crime Type">
+
+<label>Location</label>
+
+<input type="text" id="newCrimeLocation" placeholder="Enter Location">
+
+<label>Status</label>
+
+<select id="newCrimeStatus">
+
+<option>Solved</option>
+<option>Pending</option>
+
+</select>
+
+<button onclick="addCrime()">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Crime
+
+</button>
+
+</div>
+
+
+
+
+
+
+<!-- REPORTS -->
+
+
+<div class="reports">
+
+
+<h2>
+Recent Crime Reports
+</h2>
+    <div style="display:flex;gap:10px;margin-bottom:20px;">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by Crime or Location..."
+        style="flex:1;padding:12px;">
+
+    <button onclick="searchCrime()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search
+    </button>
+
+</div>
+
+
+<table id="reportsTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Crime</th>
+<th>Location</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- SETTINGS -->
+
+<div class="settings">
+
+    <h2><i class="fa-solid fa-gear"></i> Settings</h2>
+
+    <div class="settings-card">
+
+        <h3>Application Settings</h3>
+
+        <br>
+
+        <label>
+            <input type="checkbox" id="notificationToggle" checked>
+            Enable Notifications
+        </label>
+
+        <br><br>
+
+        <label>Theme</label>
+
+        <select id="themeSelect">
+            <option value="dark">Dark Mode</option>
+            <option value="light">Light Mode</option>
+        </select>
+
+        <br><br>
+
+        <label>Language</label>
+
+        <select id="languageSelect">
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Telugu</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="saveSettings()">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Save Settings
+        </button>
+
+        <p id="settingsMessage"></p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- JAVASCRIPT LIBRARIES -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+
+<!-- YOUR JS FILE -->
+
+<script src="index.js"></script>
+
+
+
+</body>
+
+</html>
