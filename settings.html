@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CrimeVision AI - Settings</title>
+
+<link rel="stylesheet" href="index.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+.setting-group{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.setting-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+border-bottom:1px solid #eee;
+}
+
+.setting-row:last-child{
+border-bottom:none;
+}
+
+.setting-row h3{
+margin-bottom:5px;
+}
+
+.setting-row p{
+font-size:14px;
+color:gray;
+}
+
+.switch{
+position:relative;
+display:inline-block;
+width:55px;
+height:28px;
+}
+
+.switch input{
+display:none;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#ccc;
+transition:.4s;
+border-radius:34px;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:22px;
+width:22px;
+left:3px;
+bottom:3px;
+background:white;
+transition:.4s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background:#2563eb;
+}
+
+input:checked + .slider:before{
+transform:translateX(27px);
+}
+
+.save-btn{
+margin-top:30px;
+padding:14px 35px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.save-btn:hover{
+background:#1d4ed8;
+}
+
+select,input[type=password]{
+padding:10px;
+border:1px solid #ddd;
+border-radius:8px;
+width:220px;
+}
+
+.dark-mode{
+background:#111827;
+color:white;
+}
+
+.dark-mode header,
+.dark-mode .setting-group{
+background:#1f2937;
+color:white;
+}
+
+.dark-mode .setting-row{
+border-bottom:1px solid #374151;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+CrimeAI
+</h2>
+
+<ul>
+
+<li onclick="location.href='index.html'">
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
+</li>
+
+<li onclick="location.href='analytics.html'">
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</li>
+
+<li onclick="location.href='reports.html'">
+<i class="fa-solid fa-file-lines"></i>
+Reports
+</li>
+
+<li onclick="location.href='profile.html'">
+<i class="fa-solid fa-user"></i>
+Profile
+</li>
+
+<li class="active">
+<i class="fa-solid fa-gear"></i>
+Settings
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<header>
+
+<h1 id="settingsTitle">Application Settings</h1>
+
+<div class="profile">
+
+<i class="fa-solid fa-user-circle"></i>
+
+Admin
+
+</div>
+
+</header>
+
+<!-- Appearance -->
+
+<div class="setting-group">
+
+<h2><i class="fa-solid fa-palette"></i> Appearance</h2>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Dark Mode</h3>
+
+<p>Enable dark theme</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" id="darkMode">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Language</h3>
+
+<p>Select application language</p>
+
+</div>
+
+<select id="language">
+
+<option>English</option>
+
+<option>Hindi</option>
+
+<option>Telugu</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Notifications -->
+
+<div class="setting-group">
+
+<h2><i class="fa-solid fa-bell"></i> Notifications</h2>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Email Notifications</h3>
+
+<p>Receive alerts by email</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" id="notification" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Crime Alerts</h3>
+
+<p>Instant crime notifications</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<!-- Security -->
+
+<div class="setting-group">
+
+<h2><i class="fa-solid fa-lock"></i> Security</h2>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Change Password</h3>
+
+<p>Enter a new password</p>
+
+</div>
+
+<input
+type="password"
+placeholder="New Password">
+
+</div>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Two-Factor Authentication</h3>
+
+<p>Extra account security</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<!-- Dashboard -->
+
+<div class="setting-group">
+
+<h2><i class="fa-solid fa-chart-column"></i> Dashboard</h2>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Auto Refresh</h3>
+
+<p>Refresh dashboard every 30 seconds</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="setting-row">
+
+<div>
+
+<h3>Show Statistics</h3>
+
+<p>Display dashboard analytics</p>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<center>
+
+<button
+class="save-btn"
+onclick="saveSettings()">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Settings
+
+</button>
+
+</center>
+
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>
+
